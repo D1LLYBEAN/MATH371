@@ -1,0 +1,80 @@
+On my first attempt at this lab, there seemed to be an error in the section where I used the averages to find the probability of the coin landing heads. I beleive my algebra was correct, but RStudio wasn't interpreting PEMDAS as I expected.
+I also stopped dividing my average by 2, to reduce confusion, because it wasn't necessary.
+New "Probability of Heads" equation:
+pH = (20 - ave) / 18
+I have the algebra proof for this equation worked out in the comments of my code block below.
+
+The unfair coin appears to be approaching a P(H) of 80%.
+
+---------------------------------------------------------------------------------------------
+
+# Scanning files into variables...
+# Data contains values of $2, $11, and $20; two coin flips per value.
+eSS10 = scan(file="earningsSampleSize10");
+eSS100 = scan(file="earningsSampleSize100");
+eSS1000 = scan(file="earningsSampleSize1000");
+eSS100000 = scan(file="earningsSampleSize10000"); # And this file is the wrong size!
+
+# Experimental Averages of unfair coins
+ave10 = sum(eSS10) / 10;
+ave100 = sum(eSS100) / 100;
+ave1000 = sum(eSS1000) / 1000;
+ave100000 = sum(eSS100000) / 100000;
+
+# Theoretical Average of fair coins
+#   ave = (pHH    *   $2) + (2 * (pHT    *   $11)) + (pTT    *   $20)
+aveFair = (0.5 * 0.5 * 2) + (2 * (0.5 * 0.5 * 11)) + (0.5 * 0.5 * 20);
+
+# Probablility of heads for unfair and fair coins (and algebra proof)
+# ave = ($2 * pHH) + ($11 * pHT) + ($11 * PTH) + ($20 * pTT)
+# ave = ($2 * pH * pH) + 2($11 * pH * PT) + ($20 * PT * PT) ---> pT = 1 - pH
+# ave = ($2 * pH * pH) + 2($11 * pH * (1 - pH)) + ($20 * (1 - pH) * (1 - pH))
+# ave = (2pH^2) + 2(11pH - 11pH^2) + (20 - 20pH - 20pH + 20pH^2)
+# ave = 2pH^2 + 22 pH - 22pH^2 + 20 - 40 pH + 20pH^2
+# ave = 0pH^2 - 18pH + 20
+# 18pH - 20 = -ave
+# 18pH = 20 - ave
+# pH = (20 - ave) / 18
+pH10 = (20 - ave10) / 18;
+pH100 = (20 - ave100) / 18;
+pH1000 = (20 - ave1000) / 18;
+pH100000 = (20 - ave100000) / 18;
+pHFair = (20 - aveFair) / 18;
+
+# Console Output...
+ave10
+ave100
+ave1000
+ave100000
+aveFair
+
+pH10
+pH100
+pH1000
+pH100000
+pHFair
+
+---------------------------------------------------------------------------------------------
+
+> # Console Output...
+> ave10
+[1] 6.5
+> ave100
+[1] 6.41
+> ave1000
+[1] 5.789
+> ave100000
+[1] 5.609
+> aveFair
+[1] 11
+> 
+> pH10
+[1] 0.75
+> pH100
+[1] 0.755
+> pH1000
+[1] 0.7895
+> pH100000
+[1] 0.7995
+> pHFair
+[1] 0.5
