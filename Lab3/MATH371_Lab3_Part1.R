@@ -8,7 +8,7 @@ attach(mysteryDATA)
 #summary(mysteryDATA)
 
 #choose data set
-data=d1
+data=d10
 
 #choose appropriate spacing and eliminate bad distributions
 by=1
@@ -33,7 +33,7 @@ for(i in data){
 
 #plot histogram of data set
 seq=seq(min(data)-by/2,max(data)+by/2,by)
-hist(data,seq,prob=TRUE)
+hist(data,seq,prob=TRUE,main="",xlab="",ylab="")
 #summary(data)
 
 #find best fit distribution

@@ -8,7 +8,7 @@ attach(StudentData)
 #summary(StudentData)
 
 #choose data set
-data=colds
+data=att
 
 #choose appropriate spacing and eliminate bad distributions
 by=1
@@ -33,8 +33,8 @@ for(i in data){
 
 #plot histogram of data set
 seq=seq(min(data)-by/2,max(data)+by/2,by)
-hist(data,seq,prob=TRUE)
-summary(data)
+hist(data,seq,prob=TRUE,main="",xlab="",ylab="")
+#summary(data)
 
 #find best fit distribution
 if(isDisc){
